@@ -22,3 +22,26 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+def cal():
+    message = input()
+    split = message.split(' ')
+    _cal = calendar.TextCalendar(6)  # 6 is starting the week at Sunday
+    if message == '':
+        today = datetime.today()
+        _cal.prmonth(today.year, today.month)
+    elif len(split) == 1 and 12 > int(split[0]) > 0:
+        today = datetime.today()
+        _cal.prmonth(today.year, int(split[0]))
+    elif len(split) == 2 and 12 > int(split[1]) > 0:
+        _cal.prmonth(int(split[0]), int(split[1]))
+    else:
+        print('''
+# Usage: Enter nothing to get the current month.
+# Enter a single month from 1-12 to get that month in the current year.
+# Enter a year and a month as integers separated by a space to get that month and year.
+            ''')
+
+
+cal()
